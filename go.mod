@@ -14,7 +14,7 @@ require (
 	github.com/ugorji/go v1.1.9 // indirect
 	github.com/uvalib/virgo4-jwt v0.0.0-20200812155832-7443daa580fd
 	github.com/zsais/go-gin-prometheus v0.1.0
-	golang.org/x/crypto v0.0.0-20200820211705-5c72a883971a // indirect
-	golang.org/x/sys v0.0.0-20200928205150-006507a75852 // indirect
+	golang.org/x/crypto v0.0.0-20200930160638-afb6bcd081ae // indirect
+	golang.org/x/sys v0.0.0-20200930185726-fdedc70b468f // indirect
 	google.golang.org/protobuf v1.25.0 // indirect
 )

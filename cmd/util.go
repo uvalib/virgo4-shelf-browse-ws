@@ -39,3 +39,13 @@ func integerWithMinimum(str string, min int) int {
 
 	return val
 }
+
+func sliceContainsString(haystack []string, needle string) bool {
+	for _, item := range haystack {
+		if item == needle {
+			return true
+		}
+	}
+
+	return false
+}

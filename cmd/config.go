@@ -37,12 +37,26 @@ type serviceConfigSolrShelfBrowse struct {
 	MaxItems     int    `json:"max_items,omitempty"`
 }
 
+type serviceConfigCoverImages struct {
+	URLPrefix    string   `json:"url_prefix,omitempty"`
+	IDField      string   `json:"id_field,omitempty"`
+	TitleField   string   `json:"title_field,omitempty"`
+	AuthorFields []string `json:"author_fields,omitempty"`
+	ISBNField    string   `json:"isbn_field,omitempty"`
+	LCCNField    string   `json:"lccn_field,omitempty"`
+	OCLCField    string   `json:"oclc_field,omitempty"`
+	PoolField    string   `json:"pool_field,omitempty"`
+	UPCField     string   `json:"upc_field,omitempty"`
+	MusicPool    string   `json:"music_pool,omitempty"`
+}
+
 type serviceConfigSolr struct {
 	Host        string                       `json:"host,omitempty"`
 	Core        string                       `json:"core,omitempty"`
 	Clients     serviceConfigSolrClients     `json:"clients,omitempty"`
 	Params      serviceConfigSolrParams      `json:"params,omitempty"`
 	ShelfBrowse serviceConfigSolrShelfBrowse `json:"shelf_browse,omitempty"`
+	CoverImages serviceConfigCoverImages     `json:"cover_images,omitempty"`
 }
 
 type serviceConfigField struct {

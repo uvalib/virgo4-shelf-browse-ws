@@ -157,6 +157,10 @@ func (s *searchContext) handleBrowseRequest() searchResponse {
 		for _, field := range s.svc.config.Fields {
 			val := item.doc.getFirstString(field.Field)
 
+			if val == "" && field.Name == "cover_image_url" {
+				val = s.getCoverImageURL(item.doc)
+			}
+
 			if val != "" {
 				newItem[field.Name] = val
 			}
