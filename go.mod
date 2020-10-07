@@ -11,10 +11,10 @@ require (
 	github.com/prometheus/common v0.14.0 // indirect
 	github.com/prometheus/procfs v0.2.0 // indirect
 	github.com/sirupsen/logrus v1.7.0 // indirect
-	github.com/ugorji/go v1.1.9 // indirect
+	github.com/ugorji/go v1.1.10 // indirect
 	github.com/uvalib/virgo4-jwt v0.0.0-20200812155832-7443daa580fd
 	github.com/zsais/go-gin-prometheus v0.1.0
-	golang.org/x/crypto v0.0.0-20200930160638-afb6bcd081ae // indirect
-	golang.org/x/sys v0.0.0-20200930185726-fdedc70b468f // indirect
+	golang.org/x/crypto v0.0.0-20201002170205-7f63de1d35b0 // indirect
+	golang.org/x/sys v0.0.0-20201007165808-a893ed343c85 // indirect
 	google.golang.org/protobuf v1.25.0 // indirect
 )

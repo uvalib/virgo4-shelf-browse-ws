@@ -35,15 +35,12 @@ func (s *searchContext) getCoverImageURL(doc *solrDocument) string {
 	authorValue := ""
 	for _, field := range cfg.AuthorFields {
 		if authorValue = doc.getFirstString(field); authorValue != "" {
-			s.log("field [%s] had author %s", field, authorValue)
 			break
 		}
 	}
 
 	// remove extraneous dates from author
 	author := strings.Trim(strings.Split(authorValue, "[")[0], " ")
-
-	s.log("author = [%s]", author)
 
 	if sliceContainsString(poolValues, cfg.MusicPool) == true {
 		// music

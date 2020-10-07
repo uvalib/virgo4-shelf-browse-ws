@@ -44,6 +44,10 @@ func (s *searchContext) err(format string, args ...interface{}) {
 	s.client.err(format, args...)
 }
 
+func (s *searchContext) warn(format string, args ...interface{}) {
+	s.client.warn(format, args...)
+}
+
 func (s *searchContext) performItemQuery(id string) searchResponse {
 	if err := s.solrItemQuery(id); err != nil {
 		s.err("query execution error: %s", err.Error())
@@ -52,7 +56,7 @@ func (s *searchContext) performItemQuery(id string) searchResponse {
 
 	if s.solrRes.meta.numRows == 0 {
 		err := fmt.Errorf("record not found")
-		s.err(err.Error())
+		s.warn(err.Error())
 		return searchResponse{status: http.StatusNotFound, err: err}
 	}
 
@@ -76,7 +80,7 @@ func (s *searchContext) getItemDetails(field, value string) (shelfBrowseItem, se
 
 	if item.forwardKey == "" && item.reverseKey == "" {
 		err := fmt.Errorf("item does not have shelf keys")
-		s.err(err.Error())
+		s.warn(err.Error())
 		return item, searchResponse{status: http.StatusNotFound, err: err}
 	}
 
