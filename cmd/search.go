@@ -135,19 +135,29 @@ func (s *searchContext) handleBrowseRequest() searchResponse {
 
 	var items []shelfBrowseItem
 
+	count := 0
 	for _, key := range revKeys {
 		//s.log("reverse key: [%s]", key)
 		if revItem, revResp := s.getItemDetails(s.svc.config.Solr.ShelfBrowse.ReverseKey, key); revResp.err == nil {
 			items = append([]shelfBrowseItem{revItem}, items...)
+			count++
+			if count >= limit {
+				break
+			}
 		}
 	}
 
 	items = append(items, thisItem)
 
+	count = 0
 	for _, key := range fwdKeys {
 		//s.log("forward key: [%s]", key)
 		if fwdItem, fwdResp := s.getItemDetails(s.svc.config.Solr.ShelfBrowse.ForwardKey, key); fwdResp.err == nil {
 			items = append(items, fwdItem)
+			count++
+			if count >= limit {
+				break
+			}
 		}
 	}
 

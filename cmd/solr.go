@@ -286,12 +286,16 @@ func (s *searchContext) solrTerms(field, key string, limit int) ([]string, error
 		return nil, fmt.Errorf("failed to create Solr request")
 	}
 
+	// request a generous buffer of extra terms, in case it turns out some don't belong to any record.
+	// this greatly increases the chance that the caller can fill the entire requested range.
+	overage := 10 * limit
+
 	qp := req.URL.Query()
 
 	qp.Add("terms.fl", field)
 	qp.Add("terms.lower", key)
 	qp.Add("terms.lower.incl", "false")
-	qp.Add("terms.limit", fmt.Sprintf("%d", limit))
+	qp.Add("terms.limit", fmt.Sprintf("%d", overage))
 	qp.Add("terms.sort", "index")
 
 	req.URL.RawQuery = qp.Encode()
@@ -354,7 +358,7 @@ func (s *searchContext) solrTerms(field, key string, limit int) ([]string, error
 
 	for i, term := range solrRes.Terms[field] {
 		if i%2 == 0 {
-			s.log("[TERM] %s: [%s]", field, term)
+			//s.log("[TERM] %s: [%s]", field, term)
 			terms = append(terms, term.(string))
 		}
 	}
