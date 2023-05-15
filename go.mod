@@ -26,7 +26,7 @@ require (
 	github.com/uvalib/virgo4-jwt v1.0.0
 	github.com/zsais/go-gin-prometheus v0.1.0
 	golang.org/x/arch v0.3.0 // indirect
-	golang.org/x/crypto v0.8.0 // indirect
+	golang.org/x/crypto v0.9.0 // indirect
 	golang.org/x/sys v0.8.0 // indirect
 	google.golang.org/protobuf v1.30.0 // indirect
 	gopkg.in/go-playground/assert.v1 v1.2.1 // indirect
