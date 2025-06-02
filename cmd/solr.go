@@ -187,7 +187,7 @@ func (s *searchContext) solrItemQuery(query string) error {
 
 	// external service success logging
 
-	s.log("Successful Solr response [%v] from %s %s. Elapsed Time: %d (ms)", solrRes.Response.Docs, req.Method, ctx.url, elapsedMS)
+	s.log("Successful Solr response from %s %s. Elapsed Time: %d (ms)", req.Method, ctx.url, elapsedMS)
 
 	s.solrRes = &solrRes
 

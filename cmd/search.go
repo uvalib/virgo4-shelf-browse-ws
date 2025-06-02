@@ -180,6 +180,7 @@ func (s *searchContext) handleBrowseRequest() searchResponse {
 			}
 		}
 
+		s.log("add response item [%v]", newItem)
 		itemMap = append(itemMap, newItem)
 	}
 
