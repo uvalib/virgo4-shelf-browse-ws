@@ -176,6 +176,9 @@ func (s *searchContext) handleBrowseRequest() searchResponse {
 			}
 
 			if val != "" {
+				if field.Name == "source" && val == "sirsi" {
+					val = "uva_library"
+				}
 				newItem[field.Name] = val
 			}
 		}
