@@ -41,7 +41,7 @@ type solrResponseHeader struct {
 	QTime  int `json:"QTime,omitempty"`
 }
 
-type solrDocument map[string]interface{}
+type solrDocument map[string]any
 
 type solrResponseDocuments struct {
 	NumFound int            `json:"numFound,omitempty"`
@@ -57,16 +57,16 @@ type solrError struct {
 }
 
 type solrResponse struct {
-	ResponseHeader solrResponseHeader       `json:"responseHeader,omitempty"`
-	Response       solrResponseDocuments    `json:"response,omitempty"`
-	Debug          interface{}              `json:"debug,omitempty"`
-	Terms          map[string][]interface{} `json:"terms,omitempty"`
-	Error          solrError                `json:"error,omitempty"`
-	Status         string                   `json:"status,omitempty"`
-	meta           *solrMeta                // pointer to struct in corresponding solrRequest
+	ResponseHeader solrResponseHeader    `json:"responseHeader,omitempty"`
+	Response       solrResponseDocuments `json:"response,omitempty"`
+	Debug          any                   `json:"debug,omitempty"`
+	Terms          map[string][]any      `json:"terms,omitempty"`
+	Error          solrError             `json:"error,omitempty"`
+	Status         string                `json:"status,omitempty"`
+	meta           *solrMeta             // pointer to struct in corresponding solrRequest
 }
 
-func (s *solrDocument) getRawValue(field string) interface{} {
+func (s *solrDocument) getRawValue(field string) any {
 	return (*s)[field]
 }
 
@@ -76,7 +76,7 @@ func (s *solrDocument) getStrings(field string) []string {
 	v := s.getRawValue(field)
 
 	switch t := v.(type) {
-	case []interface{}:
+	case []any:
 		vals := make([]string, len(t))
 		for i, val := range t {
 			vals[i] = val.(string)
@@ -187,7 +187,7 @@ func (s *searchContext) solrItemQuery(query string) error {
 
 	// external service success logging
 
-	s.log("Successful Solr response from %s %s. Elapsed Time: %d (ms)", req.Method, ctx.url, elapsedMS)
+	s.log("Successful Solr response [%v] from %s %s. Elapsed Time: %d (ms)", solrRes.Response.Docs, req.Method, ctx.url, elapsedMS)
 
 	s.solrRes = &solrRes
 
