@@ -134,7 +134,7 @@ func (s *searchContext) solrItemQuery(query string) error {
 
 	// instead, write the json to the body of the request.
 	// NOTE: Solr is lenient; GET or POST works fine for this.
-
+	s.log("[SOLR] query post body: %s", jsonBytes)
 	req, reqErr := http.NewRequest("POST", ctx.url, bytes.NewBuffer(jsonBytes))
 	if reqErr != nil {
 		s.log("[SOLR] NewRequest() failed: %s", reqErr.Error())
