@@ -179,6 +179,14 @@ func (s *searchContext) handleBrowseRequest() searchResponse {
 				if field.Name == "source" && val == "sirsi" {
 					val = "uva_library"
 				}
+				if field.Name == "pool" && val == "catalog" {
+					// when we moved from a lot of pools to just a few
+					// the name catalog referred to the old pool and
+					// couldn't be reused for the new "catalog" pool
+					// so we have it be "library_catalog" behind the
+					// scenes
+					val = "uva_library"
+				}
 				newItem[field.Name] = val
 			}
 		}
